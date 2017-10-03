@@ -40,7 +40,8 @@ public class ClientPocket extends Thread{
             String[] loginArray = login.split(":");
             if(loginArray[0].equals("LOGIN")){                
                 chatterName = loginArray[1];
-                Postman.messages.put("*:Welcome to " + chatterName+":server");
+                Postman.messages.put("MSG:*:Welcome to " + chatterName+":server");
+                Postman.messages.put("CLIENTLIST:");
                 boolean running = true;
 
                 while (running) {
@@ -49,7 +50,7 @@ public class ClientPocket extends Thread{
                     switch (incommingArray[0]) {
                         case "MSG": {
                             String recieversAndMessage = incommingArray[1];
-                            Postman.messages.put(recieversAndMessage + ":" + chatterName);
+                            Postman.messages.put("MSG:"+recieversAndMessage + ":" + chatterName);
                             break;
                         }
                         
@@ -62,6 +63,7 @@ public class ClientPocket extends Thread{
             }
             out.println("Goodbye");
             Server.clients.remove(this);
+            Postman.messages.put("CLIENTLIST:");
             in.close();
             out.close();
             clientSocket.close();
