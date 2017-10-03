@@ -17,6 +17,7 @@ public class Postman extends Thread {
     
     public static ArrayBlockingQueue<String> messages = new ArrayBlockingQueue(30);
     
+    @Override
     public void run(){
         while(true){
             try {
@@ -25,8 +26,8 @@ public class Postman extends Thread {
                 String[] recievers = receiversAndMessages[0].split(",");
                 for (ClientPocket client : Server.clients) {
                     for (String receiver : recievers) {
-                        if(recievers[0].equals("*") || client.getName().equals(receiver)){
-                            client.sendMessage(receiversAndMessages[1]);
+                        if(recievers[0].equals("*") || client.getChatterName().equals(receiver)){
+                            client.sendMessage("MSGRES:"+receiversAndMessages[2]+":"+receiversAndMessages[1]);
                         }
                     }
                 }
