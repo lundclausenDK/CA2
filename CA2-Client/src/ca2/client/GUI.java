@@ -5,15 +5,27 @@
  */
 package ca2.client;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Peter
  */
 public class GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUI
-     */
+    private String username;
+    private PrintWriter toServer;
+    private InputStreamReader streamReader;
+    private BufferedReader fromServer;
+    private Socket clientSocket;
+    private boolean isConnected;
+    
     public GUI() {
         initComponents();
     }
@@ -48,12 +60,22 @@ public class GUI extends javax.swing.JFrame {
         addressField.setText("127.0.0.1");
 
         connectButton.setText("Connect");
+        connectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                connectButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         disconnectButton.setText("Disconnect");
+        disconnectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disconnectButtonActionPerformed(evt);
+            }
+        });
 
         sendButton.setText("Send");
 
@@ -113,6 +135,30 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void disconnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disconnectButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_disconnectButtonActionPerformed
+
+    private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
+        if(isConnected = false){
+            username = usernameField.getText();
+            usernameField.setEditable(false);
+            
+            try {
+                clientSocket = new Socket(addressField.getText(),8081);
+                
+                
+                
+                
+                
+                
+                
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_connectButtonActionPerformed
 
     /**
      * @param args the command line arguments
