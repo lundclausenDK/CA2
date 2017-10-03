@@ -3,6 +3,8 @@ package ca2.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +12,7 @@ public class Server {
 
     private ServerSocket serverSocket;
     private Socket clientSocket;
+    ExecutorService es = Executors.newFixedThreadPool(30);
 
     public void startServer() {
         try {
@@ -20,7 +23,7 @@ public class Server {
                 
                 
                 clientSocket = serverSocket.accept();
-                System.out.println("Client recieved");
+                es.execute(new ClientPocket(clientSocket));
                 
             }
 
