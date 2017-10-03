@@ -36,23 +36,36 @@ public class ClientPocket extends Thread{
     @Override
     public void run(){
         try {
-            chatterName = in.readLine();
-            boolean running = true;
-            
-            while(running){
-                String incomming = in.readLine();
-                String[] incommingArray = incomming.split(":", 1);
-                switch(incommingArray[0]){
-                    case "MSG":{
-                        String recieversAndMessage = incommingArray[2];                        
+            String login = in.readLine();
+            String[] loginArray = login.split(":");
+            if(loginArray[0].equals("LOGIN")){                
+                chatterName = loginArray[1];
+                Postman.messages.put("*:Welcome to " + chatterName+":server");
+                boolean running = true;
+
+                while (running) {
+                    String incomming = in.readLine();
+                    String[] incommingArray = incomming.split(":", 2);
+                    switch (incommingArray[0]) {
+                        case "MSG": {
+                            String recieversAndMessage = incommingArray[1];
+                            Postman.messages.put(recieversAndMessage + ":" + chatterName);
+                            break;
+                        }
+                        
+                        case "LOGOUT":{
+                            running = false;
+                            break;
+                        }
                     }
                 }
             }
-            
+            out.println("Goodbye");
+            Server.clients.remove(this);
             in.close();
             out.close();
             clientSocket.close();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ClientPocket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
