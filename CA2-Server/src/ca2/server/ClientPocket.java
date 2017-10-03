@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author craci
  */
 public class ClientPocket extends Thread{
-    String name;
+    private String chatterName;
     private PrintWriter out;
     private BufferedReader in;
     private Socket clientSocket;
@@ -36,11 +36,17 @@ public class ClientPocket extends Thread{
     @Override
     public void run(){
         try {
-            name = in.readLine();
+            chatterName = in.readLine();
             boolean running = true;
             
             while(running){
-                
+                String incomming = in.readLine();
+                String[] incommingArray = incomming.split(":", 1);
+                switch(incommingArray[0]){
+                    case "MSG":{
+                        String recieversAndMessage = incommingArray[2];                        
+                    }
+                }
             }
             
             in.close();
@@ -53,5 +59,12 @@ public class ClientPocket extends Thread{
     
     public void sendMessage(String message){
         out.println(message);
+    }
+
+    /**
+     * @return the name
+     */
+    public String getChatterName() {
+        return chatterName;
     }
 }
