@@ -45,13 +45,10 @@ public class ClientPocket extends Thread{
 
                 while (running) {
                     String incomming = in.readLine();
-                    //System.out.println(incomming);
                     String[] incommingArray = incomming.split(":", 2);
-                    //System.out.println(incommingArray[0]);
                     switch (incommingArray[0]) {
                         case "MSG": {
                             String recieversAndMessage = incommingArray[1];
-                            System.out.println(recieversAndMessage);
                             Postman.messages.put(recieversAndMessage + ":" + chatterName);
                             break;
                         }
