@@ -1,5 +1,6 @@
 p, header {font-family: 'Open Sans', sans-serif; margin-bottom: 0.5rem;}
 h1 {font-family: 'Raleway', sans-serif; }
 h4 {margin-top: 20px;}
+img {max-width: 100%;}
 
 header {background: greenyellow; margin-bottom: 20px; color: white; padding: 5px;}
