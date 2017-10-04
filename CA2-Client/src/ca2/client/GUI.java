@@ -333,6 +333,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_chatFieldAncestorAdded
 
     private void privateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_privateButtonActionPerformed
+        if(writeField.getText().length() > 0 && !onlineList.getSelectedValuesList().isEmpty()){
         String names = "";
             List<String> nameList = onlineList.getSelectedValuesList();
             for (int i = 0; i < nameList.size(); i++) {
@@ -345,6 +346,7 @@ public class GUI extends javax.swing.JFrame {
             toServer.println("MSG:"+names+":" + writeField.getText());
             writeField.setText("");
             writeField.requestFocus();
+        }
     }//GEN-LAST:event_privateButtonActionPerformed
 
     /**
