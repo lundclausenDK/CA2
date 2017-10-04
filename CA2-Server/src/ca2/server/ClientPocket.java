@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca2.server;
 
 import java.io.BufferedReader;
@@ -13,10 +8,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author craci
- */
 public class ClientPocket extends Thread{
     private String chatterName;
     private PrintWriter out;
@@ -62,13 +53,18 @@ public class ClientPocket extends Thread{
                 }
             }
             out.println("Goodbye");
-            Server.clients.remove(this);
-            Postman.messages.put("CLIENTLIST:");
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (Exception ex) {
+        } catch (IOException | InterruptedException ex) {
             Logger.getLogger(ClientPocket.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            Server.clients.remove(this);
+            try {
+                Postman.messages.put("CLIENTLIST:");
+                in.close();
+                out.close();
+                clientSocket.close();
+            } catch (IOException | InterruptedException ex) {
+                Logger.getLogger(ClientPocket.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
