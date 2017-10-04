@@ -1,4 +1,5 @@
-p, header {font-family: 'Open Sans', sans-serif;}
-h1 {font-family: 'Raleway', sans-serif;}
+p, header {font-family: 'Open Sans', sans-serif; margin-bottom: 0.5rem;}
+h1 {font-family: 'Raleway', sans-serif; }
+h4 {margin-top: 20px;}
 
 header {background: greenyellow; margin-bottom: 20px; color: white; padding: 5px;}

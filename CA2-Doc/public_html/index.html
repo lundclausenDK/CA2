@@ -28,31 +28,37 @@
                     <hr>
                     
                     <h4>Download</h4>
+                    <p>Link til <a href="https://github.com/lundclausenDK/CA2.git" target="_blank">Github</a></p>
                     <p>Link til <a href="">Server.jar</a></p>
                     <p>Link til <a href="">Client.jar</a></p>
-                    <p>Link til <a href="">Github</a></p>
                     <p>Link til <a href="">dokumentation i pdf</a> </p>
                     
                     <hr>
                     
                     <h4>Introduktion</h4>
                     <p>Vi fik opgaven at udvikle en simpel chat service med enkelt brugergrænseflade. Systemet skulle kunne håndtere mange brugere samtidig og man skulle logge ind, skrive til alle eller én person.</p>
-                    <p>Chat servicen skulle køre på online tilgængelig server og vi fik udleveret en protokol </p>
+                    <p>Chat servicen skulle køre på online tilgængelig server og vi fik udleveret en protokol som fortalte hvilke kommandoer chat servicen skulle reagere på.</p>
+                    <p>Scope var at kunne interagere med andre gruppers chat service både på client og server niveau.</p>
                     
                     <h4>Kort brugermanual</h4>
-                    <p>For at kunne hente clienten og logge på vores server, skal du starte vores ca2.client/Run.java</p>
+                    <p>For at kunne benytte GUI klienten og logge på vores server, skal du starte vores ca2.client/Run.java</p>
+                    <p>Du kan også benytte telnet 165.227.151.92 8081.</p>
+                    <p>I vores GUI kan man connecte og disconnecte og man kan skrive til én eller flere brugere i privat eller fællesrum.</p>
                     
                     <h4>Arkitektur</h4>
-                    <p>Tekst..</p>
+                    <p>Vi valgte at dele Client og Server op i 2 Java projekter. Dette for at de hver især skal kunne deployes adskilleligt.</p>
+                    <p>Vores kode indeholder både Classes, Threads, Sockets og ArrayBlockingQueue.</p>
                     
                     <h4>Design</h4>
-                    <p>Tekst..</p>
+                    <p>Serveren fungerer som følgende: Serveren starter op, åbner socket, launcher postman (der håndterer beskeder imellem klienter) og starter et loop der lytter på nye klient forbindelser. Når en klient logger på, bliver han instantieret som ny ClientPocket (som håndterer klientfunktioner), og lagt til en arraylist af ClientPockets.</p>
+                    <p>ClientPocket funger som følgende: ClientPocket får en clientsocket med i sin constructor, lytter på om klienten er logget ind og lytter herefter konstant på om klienten chatter eller logger ud.</p>
+                    <p>Postman fungerer som følgende: Postman nedarver fra Thread og fungerer som en gammeldags telefondame, der parrer beskeder med klienter. Beskederne bliver tilføjet et ArrayBlockingQueue for herefter at blive fordelt simultant.</p>
                     
                     <h4>Tests</h4>
                     <p>Tekst...</p>
                     
                     <h4>Hvem har lavet hvad</h4>
-                    <p>Tekst...</p>
+                    <p>Vi har arbejdet efter modellen pair programming, så vores commits er ikke repræsentabel for aktuelt arbejde. Alle har kodet Java og været deltager i projektet.</p>
                     
                 </div>
                 
