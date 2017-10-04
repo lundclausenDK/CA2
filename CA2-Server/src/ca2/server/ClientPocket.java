@@ -53,13 +53,18 @@ public class ClientPocket extends Thread{
                 }
             }
             out.println("Goodbye");
-            Server.clients.remove(this);
-            Postman.messages.put("CLIENTLIST:");
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (Exception ex) {
+        } catch (IOException | InterruptedException ex) {
             Logger.getLogger(ClientPocket.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            Server.clients.remove(this);
+            try {
+                Postman.messages.put("CLIENTLIST:");
+                in.close();
+                out.close();
+                clientSocket.close();
+            } catch (IOException | InterruptedException ex) {
+                Logger.getLogger(ClientPocket.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
