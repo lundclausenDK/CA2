@@ -70,10 +70,10 @@ public class GUI extends javax.swing.JFrame {
 
                         } else if (data[0].equals("CLIENTLIST")) {
                             data = data[1].split(",");
-                            for (int i = 0; i < data.length; i++) {
+                            
                                 onlineList.setListData(data);
 
-                            }
+                            
                         }
                     }
 
